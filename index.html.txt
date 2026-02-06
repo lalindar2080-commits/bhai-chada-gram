@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bhicharagram Clone</title>
+    <link rel="stylesheet" href="insta.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">bhaicharagram</div>
+        <input type="text" placeholder="Search" class="search-bar">
+        <div class="nav-icons">🏠 ✉️ 🧭 ❤️</div>
+    </nav>
+
+    <div class="main-container">
+        <div class="stories-container">
+            <div class="story"><div class="story-circle"></div><span>You</span></div>
+            <div class="story"><div class="story-circle"></div><span>Rohan</span></div>
+            <div class="story"><div class="story-circle"></div><span>Sneha</span></div>
+            <div class="story"><div class="story-circle"></div><span>Rahul</span></div>
+        </div>
+
+        <div id="feed">
+            <div class="insta-post">
+                <div class="post-header">
+                    <div class="mini-profile"></div>
+                    <strong>coding_bhai</strong>
+                </div>
+                <div class="post-img" ondblclick="showHeart(this)">
+                    <img src="https://via.placeholder.com/500" alt="Post">
+                    <div class="heart-icon">❤️</div>
+                </div>
+                <div class="post-footer">
+                    <div class="icons">❤️ 💬 🚀</div>
+                    <p><strong>1,234 likes</strong></p>
+                    <p><strong>coding_bhai</strong> Aaj Instagram bhi bana diya! 🔥</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="insta.js"></script>
+</body>
+</html>
+<div class="dm-container">
+    <div class="chat-list">
+        <div class="chat-user active">
+            <div class="mini-profile"></div>
+            <span>coding_bhai</span>
+        </div>
+        <div class="chat-user">
+            <div class="mini-profile"></div>
+            <span>rohan_kumar</span>
+        </div>
+    </div>
+
+    <div class="chat-box">
+        <div class="chat-header-top">
+            <strong>coding_bhai</strong>
+        </div>
+        <div id="messageArea" class="message-area">
+            <div class="msg-received">Bhai code kaisa laga?</div>
+            <div class="msg-sent">Mast hai bhai! 🔥</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="dmInput" placeholder="Message...">
+            <button onclick="sendDM()">Send</button>
+        </div>
+    </div>
+</div>
+<div class="search-container">
+    <input type="text" id="searchInput" onkeyup="searchUser()" placeholder="Search users...">
+    <div id="searchResults" class="search-results">
+        </div>
+</div>
+<div class="unique-features">
+    <div class="mood-selector">
+        <span>Mood: </span>
+        <button onclick="changeMood('fire')">🔥 Fire</button>
+        <button onclick="changeMood('ocean')">🌊 Calm</button>
+        <button onclick="changeMood('neon')">🌈 Neon</button>
+    </div>
+
+    <div class="xp-container">
+        <p>Level: <span id="userLevel">5</span> (Pro Gamer)</p>
+        <div class="xp-bar"><div class="xp-progress" style="width: 70%;"></div></div>
+    </div>
+</div>
+<div class="gaming-section">
+    <h3>🏆 Top Players (Global)</h3>
+    <ul id="leaderboard">
+        <li><span>1. coding_bhai</span> <span>5200 XP</span></li>
+        <li><span>2. rahul_pro</span> <span>4100 XP</span></li>
+        <li><span>3. amit_gamer</span> <span>3800 XP</span></li>
+    </ul>
+    
+    <div class="achievements">
+        <span>🏅 Badges:</span>
+        <div id="badgeContainer">
+            <span class="badge" title="First Post">🆕</span>
+            <span class="badge" title="100 Likes">🔥</span>
+        </div>
+    </div>
+</div>
+<div class="ai-section">
+    <div class="ai-header">
+        <span>🤖 AI Assistant Mode</span>
+        <label class="switch">
+            <input type="checkbox" id="aiToggle" onclick="toggleAIMode()">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div id="aiBox" class="ai-content" style="display: none;">
+        <p>Bhai, kya likhna hai? Main caption bana deta hoon!</p>
+        <input type="text" id="aiPrompt" placeholder="Topic likho (e.g. Goa Trip)...">
+        <button onclick="askAI()">Generate Caption ✨</button>
+        <div id="aiResponse" class="ai-response"></div>
+    </div>
+</div>
+<div class="voice-status" id="voiceStatus">
+    🎤 Voice Mode: Off (Say "Like" or "Post")
+</div>
+<div class="wallet-section">
+    <div class="wallet-balance">
+        🪙 <span id="coinCount">0</span> Bhai-Coins
+    </div>
+    <div class="trading-status">🚀 Market: +5.2%</div>
+</div>
+<div id="videoCallRoom" class="video-container" style="display:none;">
+    <div class="video-grid">
+        <div class="video-box">
+            <video id="localVideo" autoplay muted></video>
+            <span>You</span>
+        </div>
+        <div class="video-box">
+            <video id="remoteVideo" autoplay></video>
+            <span>Dost</span>
+        </div>
+    </div>
+    <div class="call-controls">
+        <button onclick="endCall()" style="background:red;">🚫 End</button>
+        <button onclick="shareScreen()">🖥️ Share Screen</button>
+    </div>
+</div>
+<div id="vaultOverlay" class="vault-popup" style="display:none;">
+    <div class="vault-content">
+        <h3>🔒 Private Vault</h3>
+        <p>Is chat ko kholne ke liye PIN daalein</p>
+        <input type="password" id="vaultPin" placeholder="Enter 4-digit PIN">
+        <button onclick="verifyPin()">Unlock</button>
+        <button onclick="closeVault()" style="background:gray;">Cancel</button>
+    </div>
+</div>
+
+<div class="chat-user" onclick="openLockedChat('coding_bhai')">
+    <div class="mini-profile"></div>
+    <span>coding_bhai</span>
+    <span style="margin-left: auto;">🔒</span>
+</div>
+<div class="msg-sent">
+    Bhai, ye secret message hai.
+    <span class="encryption-key">Encrypted: 8xK92Lp... 🔒</span>
+</div>
+<div class="reels-container" id="reelsFeed">
+    <div class="reel-video">
+        <video src="video1.mp4" loop onclick="togglePlay(this)"></video>
+        <div class="reel-sidebar">
+            <div class="reel-icon" onclick="earnCoins()">❤️<span>1.2M</span></div>
+            <div class="reel-icon">💬<span>45K</span></div>
+            <div class="reel-icon">🚀<span>10K</span></div>
+        </div>
+        <div class="reel-info">
+            <strong>@coding_bhai</strong>
+            <p>Bhai ye AI wala feature kamaal hai! 🔥 #Gaming #AI</p>
+        </div>
+    </div>
+</div>
+<div class="ar-control-panel">
+    <h4>✨ AR Magic Filters</h4>
+    <div class="filter-grid">
+        <button onclick="setAR('blur(5px)')">Ghost Blur</button>
+        <button onclick="setAR('invert(1)')">Negative</button>
+        <button onclick="setAR('saturate(5)')">Deep Color</button>
+        <button onclick="setAR('contrast(200%) brightness(150%)')">Glow Up</button>
+    </div>
+</div>
+<div class="activity-ticker">
+    <div class="ticker-text" id="pulseText">
+        ● 1,240 people are online | Sneha just unlocked a "Fire" badge | Rahul is watching Reels...
+    </div>
+</div>
+.activity-ticker {
+    background: #000;
+    color: #39ff14; /* Matrix Green */
+    padding: 5px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px solid #39ff14;
+}
+.ticker-text {
+    display: inline-block;
+    animation: scroll-left 15s linear infinite;
+}
+@keyframes scroll-left {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+<div class="canvas-section">
+    <h4>🎨 Live Collab Board</h4>
+    <canvas id="collabCanvas" width="350" height="200"></canvas>
+    <button onclick="clearCanvas()">Saaf Karo</button>
+</div>
+<div class="time-capsule">
+    <button onclick="startTimeCapsule()">🔒 Lock in Time Capsule</button>
+    <p id="timerText">Next opening: Jan 2031</p>
+</div>
+<div id="hackerTerminal" class="hacker-ui" style="display:none;">
+    <div class="terminal-header">🔴 SYSTEM OVERRIDE - ADMIN ACCESS</div>
+    <div id="terminalLog" class="terminal-log">
+        [INFO] Initializing exploit...<br>
+        [INFO] Bypassing firewall...<br>
+        [SUCCESS] Connected to User_DB_01...<br>
+    </div>
+    <input type="text" id="cmdInput" placeholder="root@system:~# " onkeydown="executeHackerCmd(event)">
+</div>
+<div id="shadowPanel" class="shadow-monitor" style="display:none;">
+    <h4>👻 Shadow Watcher: Online Users</h4>
+    <div id="activityStream" class="stream-box">
+        </div>
+    <button onclick="toggleInvisibility()">Go Invisible (Ghost Mode)</button>
+</div>
+<div id="gameZone" class="game-container">
+    <div id="scoreBoard">Score: <span id="currentScore">0</span></div>
+    <canvas id="gameCanvas"></canvas>
+    <div id="gameOverlay">
+        <h2>🎮 3D RUNNER MODE</h2>
+        <button onclick="startGame()">Start Mission</button>
+    </div>
+</div>
+<div id="racingZone" class="racing-container">
+    <div class="hud">
+        <div id="speedometer">Speed: 0 km/h</div>
+        <div id="lapTime">Coins: <span id="gameCoins">0</span></div>
+    </div>
+    <canvas id="raceCanvas"></canvas>
+    
+    <div id="raceControls">
+        <button onclick="launchRace()">🚀 START ENGINE</button>
+    </div>
+</div>
